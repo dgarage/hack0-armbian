@@ -1,0 +1,11 @@
+[Unit]
+Description=BTCPay Server external drive initialization
+Before=docker.service
+After=mnt-external.mount
+
+[Service]
+Type=oneshot
+ExecStart=/opt/btcpay/btcpay-setup-external-drive.sh
+
+[Install]
+WantedBy=multi-user.target

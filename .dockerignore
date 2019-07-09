@@ -1,0 +1,18 @@
+# Start by ignoring everything
+*
+
+# Include certain files and directories; mostly the build system, and some of the config. when run, those are bind-mounted in.
+!/VERSION
+!/LICENSE
+!/compile.sh
+!/lib
+!/extensions
+!/config/sources
+!/config/templates
+
+
+# Ignore unnecessary files inside include directories
+# This should go after the include directories
+**/*~
+**/*.log
+**/.DS_Store
