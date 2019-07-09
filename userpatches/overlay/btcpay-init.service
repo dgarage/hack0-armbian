@@ -1,0 +1,11 @@
+[Unit]
+Description=BTCPay Server initialization
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStart=/opt/btcpay/btcpay-init.sh
+
+[Install]
+WantedBy=multi-user.target
