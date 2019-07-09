@@ -1,0 +1,16 @@
+[Unit]
+Description=BTCPay Server fancontrol
+ConditionPathExists=/sys/class/thermal/thermal_zone0/temp
+
+[Service]
+Type=simple
+Environment="TEMP_MIN=60"
+Environment="TEMP_MAX=75"
+Environment="TEMP_COOLDOWN=55"
+Environment="TEMP_FILE=/sys/class/thermal/thermal_zone0/temp"
+ExecStart=/opt/btcpay/fancontrol.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
