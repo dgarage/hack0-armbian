@@ -15,10 +15,10 @@ export APT_LISTCHANGES_FRONTEND=none
 OVERLAY="/tmp/overlay"
 DESTINATION="/root"
 
-touch "$DESTINATION/.need-factory-setup"
-
 source "$OVERLAY/build.conf"
 [ -f "$OVERLAY/build-local.conf" ] && source "$OVERLAY/build-local.conf"
+
+$SETUP_MODE && touch "$DESTINATION/.setup-mode"
 
 if $HACK0_LOAD_AUTHORIZED_KEYS && [ -f "$OVERLAY/authorized_keys" ]; then
     mkdir -p "/root/.ssh"

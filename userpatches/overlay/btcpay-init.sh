@@ -17,32 +17,23 @@ fi
 
 cd /root
 
-if ! [ -f "docker-images.tar" ]; then
-    echo -e "[ \e[32mOK\e[0m ] Skipping docker images loading: docker-images.tar is not found."
-else
+if $SETUP_MODE && [ -f "docker-images.tar" ]; then
     echo "Loading docker images..."
     docker load < "docker-images.tar"
-    rm -f docker-images.tar
     echo -e "[ \e[32mOK\e[0m ] Docker images loaded."
 fi
 
-if ! [ -f utxo-snapshot-*.tar ]; then
-    echo -e "[ \e[32mOK\e[0m ] Skipping utxo-set loading: No utxo snapshot file detected"
-else
-    if [ -d "$bitcoin_data_dir" ]; then
-        echo -e "[ \e[32mOK\e[0m ] Skipping load utxo-set: $bitcoin_data_dir already exists."
-        rm -f $SNAPSHOT_TAR
-    else
-        source /etc/profile.d/btcpay-env.sh
-        echo "Loading UTXO set"
-        SNAPSHOT_TAR="$(readlink -f utxo-snapshot-*.tar)"
-        pushd . &> /dev/null
-        cd btcpayserver-docker/contrib/FastSync
-        ./load-utxo-set.sh $SNAPSHOT_TAR
-        popd
-        rm -f $SNAPSHOT_TAR
-        echo -e "[ \e[32mOK\e[0m ] UTXO Set preloaded."
-    fi
+if $SETUP_MODE && [ -f utxo-snapshot-*.tar ]; then
+    BITCOIN_DATA_DIR=/var/lib/docker/volumes/generated_bitcoin_datadir/_data
+    rm -rf "$BITCOIN_DATA_DIR"
+    source /etc/profile.d/btcpay-env.sh
+    echo "Loading UTXO set"
+    SNAPSHOT_TAR="$(readlink -f utxo-snapshot-*.tar)"
+    pushd . &> /dev/null
+    cd btcpayserver-docker/contrib/FastSync
+    ./load-utxo-set.sh $SNAPSHOT_TAR
+    popd
+    echo -e "[ \e[32mOK\e[0m ] UTXO Set preloaded."
 fi
 
 export BTCPAY_HOST_SSHKEYFILE="/root/.ssh/id_rsa_btcpay"

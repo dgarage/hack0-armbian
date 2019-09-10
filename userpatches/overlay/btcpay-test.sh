@@ -81,10 +81,10 @@ while true; do
 done
 
 if $success; then
-    if [ -f "/root/.need-factory-setup" ]; then
+    if $SETUP_MODE; then
         echo "0" > $white_led
         rm -rf /root/.not_logged_in_yet
-        rm -rf /root/.need-factory-setup
+        rm -rf /root/.setup-mode
         source /etc/profile.d/btcpay-env.sh
         docker-compose -f $BTCPAY_DOCKER_COMPOSE down -t 20 # calling btcpay-down.sh hangs
         docker volume ls -q | while read -r line ; do
