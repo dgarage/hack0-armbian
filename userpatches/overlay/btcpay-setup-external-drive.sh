@@ -7,7 +7,7 @@ source /opt/btcpay/btcpay-common.sh
 if ! [[ "$DEVICE_NAME" ]]; then
     echo -e "[ \e[31mFailed\e[0m ] The external device is not found"
 else
-    if lsblk $PARTITION_NAME &> /dev/null; then
+    if ! $SETUP_MODE && lsblk $PARTITION_NAME &> /dev/null; then
         echo -e "[ \e[32mOK\e[0m ] Partitioning of external drive $DEVICE_NAME skipped: The disk is already partitioned"
     else
         echo "Partitioning the external drive $DEVICE_NAME..."

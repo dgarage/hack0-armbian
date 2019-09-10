@@ -12,3 +12,9 @@ fi
 MOUNT_DIR="/mnt/external"
 MOUNT_UNIT="mnt-external.mount"
 DOCKER_VOLUMES="/var/lib/docker/volumes"
+
+if [ -f "/root/.setup-mode" ]; then
+    SETUP_MODE=true
+else
+    SETUP_MODE=false
+fi
