@@ -7,7 +7,7 @@ source /opt/btcpay/btcpay-common.sh
 if ! [[ "$DEVICE_NAME" ]]; then
     echo -e "[ \e[31mFailed\e[0m ] The external device is not found"
 else
-    if ! $SETUP_MODE && lsblk $PARTITION_NAME &> /dev/null; then
+    if lsblk $PARTITION_NAME &> /dev/null; then
         echo -e "[ \e[32mOK\e[0m ] Partitioning of external drive $DEVICE_NAME skipped: The disk is already partitioned"
     else
         echo "Partitioning the external drive $DEVICE_NAME..."
@@ -26,7 +26,9 @@ else
             sleep 1
         done
     fi
-    blkid -t "TYPE=ext4" "$PARTITION_NAME" &> /dev/null || mkfs.ext4 -F "$PARTITION_NAME"
+    if $SETUP_MODE || ! blkid -t "TYPE=ext4" "$PARTITION_NAME" &> /dev/null; then
+        mkfs.ext4 -F "$PARTITION_NAME"
+    fi
     mkdir -p "$MOUNT_DIR"
     if mountpoint -q "$MOUNT_DIR"; then
         echo -e "[ \e[32mOK\e[0m ] The partition $PARTITION_NAME is already mounted on $MOUNT_DIR"
