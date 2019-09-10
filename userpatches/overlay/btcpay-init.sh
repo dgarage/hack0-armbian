@@ -54,8 +54,7 @@ else
     echo -e "[ \e[32mOK\e[0m ] BTCPayServer key file added to $authorized_keys_file"
 fi
 
-source /etc/profile.d/btcpay-env.sh
-. btcpay-setup.sh -i
-
-
-
+if $SETUP_MODE; then
+    source /etc/profile.d/btcpay-env.sh
+    . btcpay-setup.sh -i
+fi
