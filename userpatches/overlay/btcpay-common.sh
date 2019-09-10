@@ -12,6 +12,7 @@ fi
 MOUNT_DIR="/mnt/external"
 MOUNT_UNIT="mnt-external.mount"
 DOCKER_VOLUMES="/var/lib/docker/volumes"
+BTCPAY_HOST_SSHKEYFILE="/root/.ssh/id_rsa_btcpay"
 
 if [ -f "/root/.setup-mode" ]; then
     SETUP_MODE=true
