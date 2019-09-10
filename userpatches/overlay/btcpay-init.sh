@@ -17,6 +17,7 @@ fi
 
 cd /root
 
+$SETUP_MODE && rm -rf /root/.not_logged_in_yet
 if $SETUP_MODE && [ -f "docker-images.tar" ]; then
     echo "Loading docker images..."
     docker load < "docker-images.tar"
@@ -36,13 +37,12 @@ if $SETUP_MODE && [ -f utxo-snapshot-*.tar ]; then
     echo -e "[ \e[32mOK\e[0m ] UTXO Set preloaded."
 fi
 
-export BTCPAY_HOST_SSHKEYFILE="/root/.ssh/id_rsa_btcpay"
-if [ -f "$BTCPAY_HOST_SSHKEYFILE" ]; then
-    echo -e "[ \e[32mOK\e[0m ] Do not create BTCPay Server SSH keys: $BTCPAY_HOST_SSHKEYFILE already exists"
-else
+if ! [ -f "$BTCPAY_HOST_SSHKEYFILE" ]; then
     echo "Creating BTCPay server key pair"
     ssh-keygen -t rsa -f "$BTCPAY_HOST_SSHKEYFILE" -q -P "" -m PEM
     echo -e "[ \e[32mOK\e[0m ] BTCPay Server SSH keypair created"
+else
+    echo -e "[ \e[32mOK\e[0m ] Do not create BTCPay Server SSH keys: $BTCPAY_HOST_SSHKEYFILE already exists"
 fi
 
 authorized_keys_file="/root/.ssh/authorized_keys"

@@ -83,8 +83,8 @@ done
 if $success; then
     if $SETUP_MODE; then
         echo "0" > $white_led
-        rm -rf /root/.not_logged_in_yet
         rm -rf /root/.setup-mode
+
         source /etc/profile.d/btcpay-env.sh
         docker-compose -f $BTCPAY_DOCKER_COMPOSE down -t 20 # calling btcpay-down.sh hangs
         docker volume ls -q | while read -r line ; do
@@ -92,12 +92,15 @@ if $success; then
                 docker volume rm -f "$line"
             fi
         done
+
         rm -rf "$MOUNT_DIR/generated_bitcoin_datadir/_data/debug.log"
         echo "Deleted all volumes that are not related to bitcoin"
-        rm -rf $BTCPAY_HOST_SSHKEYFILE
+
+        rm -rf "$BTCPAY_HOST_SSHKEYFILE"
         authorized_keys="$(head -n -2 "/root/.ssh/authorized_keys")"
-        echo "Deleted BTCPay SSH key to access SSH host"
         echo "$authorized_keys" > /root/.ssh/authorized_keys
+        echo "Deleted BTCPay SSH key to access SSH host"
+
         rm -f /etc/ssh/ssh_host*
         echo "Deleted SSH host keys"
     fi
