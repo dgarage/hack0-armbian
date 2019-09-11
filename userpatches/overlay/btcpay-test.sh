@@ -96,7 +96,7 @@ if $success; then
         rm -rf "$MOUNT_DIR/generated_bitcoin_datadir/_data/debug.log"
         echo "Deleted all volumes that are not related to bitcoin"
 
-        rm -rf "$BTCPAY_HOST_SSHKEYFILE"
+        rm -rf "$SSHKEYFILE"
         authorized_keys="$(head -n -2 "/root/.ssh/authorized_keys")"
         echo "$authorized_keys" > /root/.ssh/authorized_keys
         echo "Deleted BTCPay SSH key to access SSH host"

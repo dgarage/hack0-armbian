@@ -17,13 +17,13 @@ fi
 
 cd /root
 
-if $SETUP_MODE || ! [ -f "$BTCPAY_HOST_SSHKEYFILE" ]; then
-    rm -rf "$BTCPAY_HOST_SSHKEYFILE"
+if $SETUP_MODE || ! [ -f "$SSHKEYFILE" ]; then
+    rm -rf "$SSHKEYFILE"
     echo "Creating BTCPay server key pair"
-    ssh-keygen -t rsa -f "$BTCPAY_HOST_SSHKEYFILE" -q -P "" -m PEM
+    ssh-keygen -t rsa -f "$SSHKEYFILE" -q -P "" -m PEM
     echo -e "[ \e[32mOK\e[0m ] BTCPay Server SSH keypair created"
 else
-    echo -e "[ \e[32mOK\e[0m ] Do not create BTCPay Server SSH keys: $BTCPAY_HOST_SSHKEYFILE already exists"
+    echo -e "[ \e[32mOK\e[0m ] Do not create BTCPay Server SSH keys: $SSHKEYFILE already exists"
 fi
 
 authorized_keys_file="/root/.ssh/authorized_keys"
