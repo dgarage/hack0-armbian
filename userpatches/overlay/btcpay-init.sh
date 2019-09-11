@@ -16,8 +16,9 @@ if ! mountpoint -q "$MOUNT_DIR"; then
 fi
 
 cd /root
-
+new_key_file=false
 if $SETUP_MODE || ! [ -f "$SSHKEYFILE" ]; then
+    new_key_file=true
     rm -rf "$SSHKEYFILE"
     echo "Creating BTCPay server key pair"
     ssh-keygen -t rsa -f "$SSHKEYFILE" -q -P "" -m PEM
@@ -55,7 +56,7 @@ if $SETUP_MODE && [ -f utxo-snapshot-*.tar ]; then
     echo -e "[ \e[32mOK\e[0m ] UTXO Set preloaded."
 fi
 
-if $SETUP_MODE; then
+if $SETUP_MODE || $new_key_file; then
     source /etc/profile.d/btcpay-env.sh
     . btcpay-setup.sh -i
 fi
