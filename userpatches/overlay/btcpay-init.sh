@@ -33,7 +33,6 @@ fi
 if grep -q "btcpay$" "$authorized_keys_file"; then
     echo -e "[ \e[32mOK\e[0m ] Do not add BTCPayServer key file to $authorized_keys_file: Already added"
 else
-    echo "# Key used by BTCPay Server" >> "$authorized_keys_file"
     cat "$SSHKEYFILE.pub" >> "$authorized_keys_file"
     echo -e "[ \e[32mOK\e[0m ] BTCPayServer key file added to $authorized_keys_file"
 fi
@@ -58,8 +57,6 @@ if $SETUP_MODE && [ -f utxo-snapshot-*.tar ]; then
     echo -e "[ \e[32mOK\e[0m ] UTXO Set preloaded."
 fi
 
-if $SETUP_MODE || $new_key_file; then
-    source /etc/profile.d/btcpay-env.sh
-    BTCPAY_HOST_SSHKEYFILE="$SSHKEYFILE"
-    . btcpay-setup.sh -i
-fi
+source /etc/profile.d/btcpay-env.sh
+BTCPAY_HOST_SSHKEYFILE="$SSHKEYFILE"
+. btcpay-setup.sh -i
