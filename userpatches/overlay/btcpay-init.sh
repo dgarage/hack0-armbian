@@ -17,22 +17,24 @@ fi
 
 cd /root
 new_key_file=false
+authorized_keys_file="/root/.ssh/authorized_keys"
 if $SETUP_MODE || ! [ -f "$SSHKEYFILE" ]; then
     new_key_file=true
-    rm -rf "$SSHKEYFILE"
+    sed -i '/btcpay$/d' "$authorized_keys_file"
+    rm -rf "$SSHKEYFILE" "$SSHKEYFILE.pub"
     echo "Creating BTCPay server key pair"
-    ssh-keygen -t rsa -f "$SSHKEYFILE" -q -P "" -m PEM
+    ssh-keygen -t rsa -f "$SSHKEYFILE" -q -P "" -m PEM -C btcpay
     echo -e "[ \e[32mOK\e[0m ] BTCPay Server SSH keypair created"
+    systemctl restart ssh
 else
     echo -e "[ \e[32mOK\e[0m ] Do not create BTCPay Server SSH keys: $SSHKEYFILE already exists"
 fi
 
-authorized_keys_file="/root/.ssh/authorized_keys"
-if grep -qF "Key used by BTCPay Server" "$authorized_keys_file"; then
+if grep -q "btcpay$" "$authorized_keys_file"; then
     echo -e "[ \e[32mOK\e[0m ] Do not add BTCPayServer key file to $authorized_keys_file: Already added"
 else
     echo "# Key used by BTCPay Server" >> "$authorized_keys_file"
-    cat /root/.ssh/id_rsa_btcpay.pub >> "$authorized_keys_file"
+    cat /root/.ssh/$SSHKEYFILE.pub >> "$authorized_keys_file"
     echo -e "[ \e[32mOK\e[0m ] BTCPayServer key file added to $authorized_keys_file"
 fi
 

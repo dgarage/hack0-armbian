@@ -97,8 +97,8 @@ if $success; then
         echo "Deleted all volumes that are not related to bitcoin"
 
         rm -rf "$SSHKEYFILE" "$SSHKEYFILE.pub"
-        authorized_keys="$(head -n -2 "/root/.ssh/authorized_keys")"
-        echo "$authorized_keys" > /root/.ssh/authorized_keys
+        sed -i '/btcpay$/d' /root/.ssh/authorized_keys
+
         echo "Deleted BTCPay SSH key to access SSH host"
 
         rm -f /etc/ssh/ssh_host*
