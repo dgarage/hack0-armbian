@@ -16,7 +16,7 @@ OVERLAY="/tmp/overlay"
 DESTINATION="/root"
 
 source "$OVERLAY/build.conf"
-[ -f "$OVERLAY/build-local.conf" ] && source "$OVERLAY/build-local.conf"
+! [ -f "$OVERLAY/.production" ] && [ -f "$OVERLAY/build-local.conf" ] && source "$OVERLAY/build-local.conf"
 
 $SETUP_MODE && touch "$DESTINATION/.setup-mode"
 
