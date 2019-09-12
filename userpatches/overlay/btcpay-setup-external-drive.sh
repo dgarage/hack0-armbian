@@ -27,6 +27,12 @@ else
         done
     fi
     if $SETUP_MODE || ! blkid -t "TYPE=ext4" "$PARTITION_NAME" &> /dev/null; then
+        if mountpoint -q "$MOUNT_DIR"; then
+            umount "$MOUNT_DIR"
+        fi
+        if mountpoint -q "$DOCKER_VOLUMES"; then
+            umount "$DOCKER_VOLUMES"
+        fi
         mkfs.ext4 -F "$PARTITION_NAME"
     fi
     mkdir -p "$MOUNT_DIR"
