@@ -1,5 +1,19 @@
 # Image customization
 
+## Pre requisite
+
+You need to have docker installed with experimental features enabled:
+
+In your `/etc/docker/daemon.json`, make sure you have
+
+```json
+{
+    "experimental": true
+}
+```
+
+Then reload docker with ```systemctl restart docker```.
+
 ## Common workflow
 
 The common development workflow is the following:
