@@ -89,7 +89,13 @@ if $BUILD; then
     OVERLAY_DIRECTORY="$(pwd)"
     cd "$OVERLAY_DIRECTORY"
     source build.conf
-    ! $PROD && [ -f "build-local.conf" ] && source build-local.conf && echo "build-local.conf loaded"
+
+    if $PROD; then
+        touch .production
+    else
+        rm -rf .production
+        [ -f "build-local.conf" ] && source build-local.conf && echo "build-local.conf loaded"
+    fi
     ! [ -d "btcpayserver-docker" ] && git clone "$BTCPAY_REPOSITORY"
     cd btcpayserver-docker
     git checkout "$BTCPAY_BRANCH"

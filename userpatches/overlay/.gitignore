@@ -3,3 +3,4 @@ build-local.conf
 docker-images.tar
 utxo-snapshot-*.tar
 btcpayserver-docker/
+.production
