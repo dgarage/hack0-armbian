@@ -19,7 +19,6 @@ cd /root
 new_key_file=false
 if $SETUP_MODE || ! [ -f "$SSHKEYFILE" ]; then
     new_key_file=true
-    BTCPAY_HOST_SSHKEYFILE="$SSHKEYFILE"
     rm -rf "$SSHKEYFILE"
     echo "Creating BTCPay server key pair"
     ssh-keygen -t rsa -f "$SSHKEYFILE" -q -P "" -m PEM
@@ -59,5 +58,6 @@ fi
 
 if $SETUP_MODE || $new_key_file; then
     source /etc/profile.d/btcpay-env.sh
+    BTCPAY_HOST_SSHKEYFILE="$SSHKEYFILE"
     . btcpay-setup.sh -i
 fi
