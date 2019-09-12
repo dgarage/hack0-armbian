@@ -59,4 +59,4 @@ fi
 
 source /etc/profile.d/btcpay-env.sh
 BTCPAY_HOST_SSHKEYFILE="$SSHKEYFILE"
-. btcpay-setup.sh -i
+. btcpay-setup.sh -i --no-systemd-reload
