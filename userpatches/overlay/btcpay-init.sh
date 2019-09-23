@@ -57,6 +57,7 @@ if $SETUP_MODE && [ -f utxo-snapshot-*.tar ]; then
     echo -e "[ \e[32mOK\e[0m ] UTXO Set preloaded."
 fi
 
-source /etc/profile.d/btcpay-env.sh
-BTCPAY_HOST_SSHKEYFILE="$SSHKEYFILE"
-. btcpay-setup.sh -i --no-systemd-reload
+if $SETUP_MODE; then
+    source /etc/profile.d/btcpay-env.sh
+    . btcpay-setup.sh -i --no-systemd-reload
+fi
