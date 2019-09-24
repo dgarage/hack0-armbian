@@ -16,26 +16,6 @@ if ! mountpoint -q "$MOUNT_DIR"; then
 fi
 
 cd /root
-new_key_file=false
-authorized_keys_file="/root/.ssh/authorized_keys"
-if $SETUP_MODE || ! [ -f "$SSHKEYFILE" ]; then
-    new_key_file=true
-    sed -i '/btcpay$/d' "$authorized_keys_file"
-    rm -rf "$SSHKEYFILE" "$SSHKEYFILE.pub"
-    echo "Creating BTCPay server key pair"
-    ssh-keygen -t rsa -f "$SSHKEYFILE" -q -P "" -m PEM -C btcpay
-    echo -e "[ \e[32mOK\e[0m ] BTCPay Server SSH keypair created"
-    systemctl restart ssh
-else
-    echo -e "[ \e[32mOK\e[0m ] Do not create BTCPay Server SSH keys: $SSHKEYFILE already exists"
-fi
-
-if grep -q "btcpay$" "$authorized_keys_file"; then
-    echo -e "[ \e[32mOK\e[0m ] Do not add BTCPayServer key file to $authorized_keys_file: Already added"
-else
-    cat "$SSHKEYFILE.pub" >> "$authorized_keys_file"
-    echo -e "[ \e[32mOK\e[0m ] BTCPayServer key file added to $authorized_keys_file"
-fi
 
 $SETUP_MODE && rm -rf /root/.not_logged_in_yet
 if $SETUP_MODE && [ -f "docker-images.tar" ]; then
