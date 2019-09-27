@@ -54,6 +54,14 @@ Here are what our patches do:
 
 `btcpay-test` controls two leds (red and white) on the rock64. When starting, the red light is on, and the white led is blinking. Once hack0 is ready to be used, the red light is off and the white led stays on.
 
+## Pre built images
+
+### Version 0.1	
+
+Image: https://hack0distrib.blob.core.windows.net/public/hack0-rockpro64-0.1.img
+sha256sum: cee097d014da2f0c046b2350f2cff01098a40f06a5d8e51735f5c8ee191e1a77
+Release date: 27 september 2019
+
 ## FAQ
 
 ### How can I change the local domain name?
