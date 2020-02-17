@@ -150,7 +150,7 @@ if $DEPLOY; then
     fi
 
     SRC="$(pwd)"
-    if dd bs=8M "if=$IMAGE" "of=$DEPLOY_ON"; then
+    if dd bs=8M "if=$IMAGE" "of=$DEPLOY_ON" status=progress; then
         display_alert "Writing succeeded" "$IMAGE" "info"
     else
         display_alert "Writing failed" "$IMAGE" "err"
