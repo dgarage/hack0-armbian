@@ -44,7 +44,7 @@ else
         if grep -qF "$MOUNT_DIR" /etc/fstab; then
             echo -e "[ \e[32mOK\e[0m ] /etc/fstab is up-to-date"
         else
-            echo "$PARTITION_NAME $MOUNT_DIR ext4 defaults,noatime,nofail 0" >> /etc/fstab
+            echo "$PARTITION_NAME $MOUNT_DIR ext4 defaults,noatime,nofail 0 2" >> /etc/fstab
             echo -e "[ \e[32mOK\e[0m ] Updated /etc/fstab"
         fi
     fi
@@ -60,7 +60,7 @@ else
         if grep -qF "$DOCKER_VOLUMES" /etc/fstab; then
             echo -e "[ \e[32mOK\e[0m ] /etc/fstab is up-to-date"
         else
-            echo "$MOUNT_DIR $DOCKER_VOLUMES none bind,nobootwait 0 0" >> /etc/fstab
+            echo "$MOUNT_DIR $DOCKER_VOLUMES none bind,nobootwait 0 2" >> /etc/fstab
             echo -e "[ \e[32mOK\e[0m ] Updated /etc/fstab for the mount point"
         fi
     fi
