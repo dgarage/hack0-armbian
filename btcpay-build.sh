@@ -105,7 +105,7 @@ if $BUILD; then
         rm -f ../docker-images.tar
         . ./build.sh -i
         cd Generated
-        export BTCPAY_DOCKER_PULL_FLAGS="--platform arm"
+        export BTCPAY_DOCKER_PULL_FLAGS="--platform arm64"
         # https://github.com/docker/docker-ce/blob/master/components/cli/experimental/README.md
         # Edit /etc/docker/daemon.json with "experimental": true
         ./pull-images.sh
