@@ -149,13 +149,8 @@ if $DEPLOY; then
         exit 1
     fi
 
-    source lib/general.sh
     SRC="$(pwd)"
-    mkdir -p cache/utility
-    download_etcher_cli
-    display_alert "Writing image" "$DEPLOY_ON" "info"
-
-    if balena-etcher $IMAGE -d $DEPLOY_ON -y; then
+    if dd bs=8M "if=$IMAGE" "of=$DEPLOY_ON"; then
         display_alert "Writing succeeded" "$IMAGE" "info"
     else
         display_alert "Writing failed" "$IMAGE" "err"
