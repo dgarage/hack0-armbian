@@ -16,15 +16,6 @@ else
     white_led=/sys/devices/platform/leds/leds/work-led/brightness
 fi
 
-if [ -f /sys/devices/platform/leds/leds/diy-led/brightness ]; then
-    white_led=/sys/devices/platform/leds/leds/work-led/brightness
-elif [ -f /sys/devices/platform/leds/leds/standby-led/brightness ]; then
-    white_led=/sys/devices/platform/leds/leds/power-led/brightness
-else
-    echo "Impossible to find the white and red leds"
-    exit 1
-fi
-
 echo '255' > $white_led
 echo '255' > $red_led
 
