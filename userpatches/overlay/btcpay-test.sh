@@ -6,9 +6,19 @@ source /opt/btcpay/btcpay-common.sh
 
 if [ -f /sys/devices/platform/leds/leds/diy-led/brightness ]; then
     red_led=/sys/devices/platform/leds/leds/diy-led/brightness
+else
+    red_led=/sys/devices/platform/leds/leds/standby-led/brightness
+fi
+
+if [ -f /sys/devices/platform/leds/leds/power-led/brightness ]; then
+    white_led=/sys/devices/platform/leds/leds/power-led/brightness
+else
+    white_led=/sys/devices/platform/leds/leds/work-led/brightness
+fi
+
+if [ -f /sys/devices/platform/leds/leds/diy-led/brightness ]; then
     white_led=/sys/devices/platform/leds/leds/work-led/brightness
 elif [ -f /sys/devices/platform/leds/leds/standby-led/brightness ]; then
-    red_led=/sys/devices/platform/leds/leds/standby-led/brightness
     white_led=/sys/devices/platform/leds/leds/power-led/brightness
 else
     echo "Impossible to find the white and red leds"
