@@ -56,11 +56,11 @@ Here are what our patches do:
 
 ## Pre built images
 
-### Version 0.1	
+### Version 0.2
 
-Image: https://hack0distrib.blob.core.windows.net/public/hack0-rockpro64-0.1.img
-sha256sum: cee097d014da2f0c046b2350f2cff01098a40f06a5d8e51735f5c8ee191e1a77
-Release date: 27 september 2019
+Image: https://hack0distrib.blob.core.windows.net/public/hack0-rockpro64-0.2.img
+sha256sum: 626058c7813df59a22b835815821647204099139e64c0225c89f2712d9cc7ae0
+Release date: 18 February 2020
 
 ## FAQ
 
