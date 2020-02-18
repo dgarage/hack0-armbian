@@ -6,8 +6,12 @@ source /opt/btcpay/btcpay-common.sh
 
 if [ -f /sys/devices/platform/leds/leds/diy-led/brightness ]; then
     red_led=/sys/devices/platform/leds/leds/diy-led/brightness
+    red_led_on=255
+    red_led_off=0
 else
     red_led=/sys/devices/platform/leds/leds/standby-led/brightness
+    red_led_on=0
+    red_led_off=0
 fi
 
 if [ -f /sys/devices/platform/leds/leds/power-led/brightness ]; then
@@ -17,7 +21,7 @@ else
 fi
 
 echo '255' > $white_led
-echo '255' > $red_led
+echo "$red_led_on" > $red_led
 
 white_led_value=255
 drive_mounted=false
@@ -106,11 +110,11 @@ if $success; then
         echo "Deleted SSH host keys"
     fi
     echo "255" > $white_led
-    echo "0" > $red_led
+    echo "$red_led_off" > $red_led
     exit 0
 else
     echo "0" > $white_led
-    echo "255" > $red_led
+    echo "$red_led_on" > $red_led
     echo -e "[ \e[31mFailed\e[0m ] Some tests did not passed in less than $timeout seconds"
     exit 1
 fi
