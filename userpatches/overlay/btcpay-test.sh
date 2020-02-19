@@ -11,7 +11,7 @@ if [ -f /sys/devices/platform/leds/leds/diy-led/brightness ]; then
 else
     red_led=/sys/devices/platform/leds/leds/standby-led/brightness
     red_led_on=0
-    red_led_off=0
+    red_led_off=255
 fi
 
 if [ -f /sys/devices/platform/leds/leds/power-led/brightness ]; then
