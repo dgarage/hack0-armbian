@@ -59,8 +59,8 @@ Here are what our patches do:
 ### Version 0.2
 
 Image: https://hack0distrib.blob.core.windows.net/public/hack0-rockpro64-0.2.img
-sha256sum: bf3eaa76ae04bdb110e3d3a096e996f99bdc3a460f5a6ff9e685c135ffd1865b https://hack0distrib.blob.core.windows.net/public/hack0-rockpro64-0.2.img
-Release date: 18 February 2020
+sha256sum: eba585ec1f24a2c4b61f401e694916921df587c12d15114ae212b855b6521116
+Release date: 19 February 2020
 
 ## FAQ
 
