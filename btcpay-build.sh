@@ -80,7 +80,7 @@ if $BUILD; then
         echo "The board should be specified with --board (See --help)"
         exit 1
     fi
-    BUILD_ARGS="docker BOARD=${BOARD} KERNEL_ONLY=no KERNEL_CONFIGURE=no RELEASE=stretch BRANCH=default BUILD_DESKTOP=no WIREGUARD=no"
+    BUILD_ARGS="docker BOARD=${BOARD} KERNEL_ONLY=no KERNEL_CONFIGURE=no RELEASE=focal BRANCH=current BUILD_DESKTOP=no WIREGUARD=no BUILD_MINIMAL=yes"
     if $UPDATE; then
         BUILD_ARGS="${BUILD_ARGS} CLEAN_LEVEL=oldcache PROGRESS_LOG_TO_FILE=yes"
     fi
@@ -117,11 +117,11 @@ if $BUILD; then
         echo "docker-images.tar is up to date"
     fi
     cd "$OVERLAY_DIRECTORY"
-    if ! [ -f "utxo-snapshot-bitcoin-mainnet-609375.tar" ]; then
+    if ! [ -f "utxo-snapshot-bitcoin-mainnet-651474.tar" ]; then
         set +e
         rm utxo-snapshot-*.tar &> /dev/null
         set -e
-        wget "http://utxosets.blob.core.windows.net/public/utxo-snapshot-bitcoin-mainnet-609375.tar" -q --show-progress
+        wget "http://utxosets.blob.core.windows.net/public/utxo-snapshot-bitcoin-mainnet-651474.tar" -q --show-progress
     fi
     popd
 
