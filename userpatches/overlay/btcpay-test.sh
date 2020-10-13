@@ -8,6 +8,10 @@ if [ -f /sys/devices/platform/leds/leds/diy-led/brightness ]; then
     red_led=/sys/devices/platform/leds/leds/diy-led/brightness
     red_led_on=255
     red_led_off=0
+elif [ -f /sys/devices/platform/leds/leds/diy/brightness ]; then
+    red_led=/sys/devices/platform/leds/leds/diy/brightness
+    red_led_on=255
+    red_led_off=0
 else
     red_led=/sys/devices/platform/leds/leds/standby-led/brightness
     red_led_on=0
@@ -16,6 +20,9 @@ fi
 
 if [ -f /sys/devices/platform/leds/leds/power-led/brightness ]; then
     white_led=/sys/devices/platform/leds/leds/power-led/brightness
+elif [ -f /sys/devices/platform/leds/leds/work/brightness ]; then
+    white_led=/sys/devices/platform/leds/leds/work/brightness
+    echo "none" > /sys/devices/platform/leds/leds/work/trigger
 else
     white_led=/sys/devices/platform/leds/leds/work-led/brightness
 fi
