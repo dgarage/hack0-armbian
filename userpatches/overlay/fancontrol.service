@@ -1,7 +1,6 @@
 [Unit]
 Description=BTCPay Server fancontrol
 ConditionPathExists=/sys/class/thermal/thermal_zone0/temp
-ConditionPathExists=/sys/class/hwmon/hwmon3/pwm1
 
 [Service]
 Type=simple
@@ -9,7 +8,6 @@ Environment="TEMP_MIN=60"
 Environment="TEMP_MAX=75"
 Environment="TEMP_COOLDOWN=55"
 Environment="TEMP_FILE=/sys/class/thermal/thermal_zone0/temp"
-Environment="FAN_FILE=/sys/class/hwmon/hwmon3/pwm1"
 ExecStart=/opt/btcpay/fancontrol.sh
 Restart=always
 RestartSec=10

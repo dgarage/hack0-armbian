@@ -6,12 +6,16 @@ set -e
 : "${TEMP_MAX:=60}"
 : "${TEMP_FILE:=/sys/class/thermal/thermal_zone0/temp}"
 : "${TEMP_COOLDOWN:=40}"
-: "${FAN_FILE:=/sys/class/hwmon/hwmon0/pwm1}"
 : "${FAN_MIN:=120}"
 : "${FAN_MAX:=255}"
 : "${FAN_KICKSTART:=0}"
 : "${CYCLE:=10}"
 : "${VERBOSE:=false}"
+
+if [[ -z "${FAN_FILE}" ]]; then
+    FAN_FILE=$(ls /sys/devices/platform/pwm-fan/hwmon/*/pwm1)
+    echo "Fan detected at $FAN_FILE"
+fi
 
 ECHO="true || "
 if "$VERBOSE"; then
