@@ -135,6 +135,7 @@ fi
 
 if $DEPLOY; then
     IMAGE="$(echo output/images/*.img)"
+    IMAGE_SHA="$(echo output/images/*.img.sha)"
     if ! [[ "$IMAGE" ]] || ! [ -f "$IMAGE" ]; then
         echo "No image were found in output/images"
         exit 1
@@ -149,16 +150,19 @@ if $DEPLOY; then
         exit 1
     fi
 
-    source lib/general.sh
-    SRC="$(pwd)"
-    mkdir -p cache/utility
-    download_etcher_cli
-    display_alert "Writing image" "$DEPLOY_ON" "info"
+    echo "Writing image" "$DEPLOY_ON" "info"
+    ifsha=$(cat $IMAGE_SHA | awk '{print $1}')
 
-    if balena-etcher $IMAGE -d $DEPLOY_ON -y; then
-        display_alert "Writing succeeded" "$IMAGE" "info"
+    [[ -x "$(command -v pv)" ]] || apt-get install -y pv
+
+    pv -p -b -r -c -N "[ .... ] dd" $IMAGE | dd of=$DEPLOY_ON bs=1M iflag=fullblock oflag=direct status=none
+    echo "Verifying. Please wait!"
+    ofsha=$(dd if=$DEPLOY_ON count=$(du -b $IMAGE | cut -f1) status=none iflag=count_bytes oflag=direct | sha256sum | awk '{print $1}')
+
+    if [[ $ifsha == $ofsha ]]; then
+        echo "Writing succeeded" "$IMAGE" "info"
     else
-        display_alert "Writing failed" "$IMAGE" "err"
+        echo "Writing failed" "$IMAGE" "err"
         exit 1
     fi
 fi
