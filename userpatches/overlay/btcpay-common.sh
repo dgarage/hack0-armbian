@@ -13,9 +13,10 @@ MOUNT_DIR="/mnt/external"
 MOUNT_UNIT="mnt-external.mount"
 DOCKER_VOLUMES="/var/lib/docker/volumes"
 SSHKEYFILE="/root/.ssh/id_rsa_btcpay"
-
+SETUP_CLEANUP=true
 if [ -f "/root/.setup-mode" ]; then
     SETUP_MODE=true
+    SETUP_CLEANUP=$([[ "$(cat "/root/.setup-mode")" == "clean" ]])
 else
     SETUP_MODE=false
 fi

@@ -19,6 +19,7 @@ source "$OVERLAY/build.conf"
 ! [ -f "$OVERLAY/.production" ] && [ -f "$OVERLAY/build-local.conf" ] && source "$OVERLAY/build-local.conf"
 
 $SETUP_MODE && touch "$DESTINATION/.setup-mode"
+$SETUP_MODE && $SETUP_CLEANUP && echo "clean" > "$DESTINATION/.setup-mode"
 
 if $HACK0_LOAD_AUTHORIZED_KEYS && [ -f "$OVERLAY/authorized_keys" ]; then
     mkdir -p "/root/.ssh"

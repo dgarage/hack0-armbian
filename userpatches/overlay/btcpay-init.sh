@@ -22,6 +22,7 @@ if $SETUP_MODE && [ -f "docker-images.tar" ]; then
     echo "Loading docker images..."
     docker load < "docker-images.tar"
     echo -e "[ \e[32mOK\e[0m ] Docker images loaded."
+    $SETUP_CLEANUP && rm -f "docker-images.tar"
 fi
 
 if $SETUP_MODE && [ -f utxo-snapshot-*.tar ]; then
@@ -35,6 +36,7 @@ if $SETUP_MODE && [ -f utxo-snapshot-*.tar ]; then
     ./load-utxo-set.sh $SNAPSHOT_TAR
     popd
     echo -e "[ \e[32mOK\e[0m ] UTXO Set preloaded."
+    $SETUP_CLEANUP && rm -f "$SNAPSHOT_TAR"
 fi
 
 if $SETUP_MODE; then
