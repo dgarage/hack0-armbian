@@ -59,11 +59,11 @@ Here are what our patches do:
 > [!WARNING]
 > When you first boot a prebuilt images, the hack0 will be in `setup mode`, which will format any attached drive to the board. Please read `Common workflow` section above.
 
-### Version 0.3
+### Version 0.4
 
-Image: https://hack0distrib.blob.core.windows.net/public/hack0-rockpro64-0.3.img
-sha256sum: 0c303cdba9c6bfb7bbfb4d3848d5604fe1311b30cf66e8832cfb0d4b78065ad2
-Release date: 15 october 2020
+Image: https://hack0distrib.blob.core.windows.net/public/hack0-rockpro64-0.4.img
+sha256sum: d5254602a3faebaba61b850b94a0d38cac5e74819c779b2967f0ee5936197283
+Release date: 26 may 2021
 
 ## FAQ
 
