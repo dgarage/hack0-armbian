@@ -61,8 +61,10 @@ Here are what our patches do:
 
 ### Version 0.4
 
-Image: https://hack0distrib.blob.core.windows.net/public/hack0-rockpro64-0.4.img
+Image: https://hack0-image.s3.ap-northeast-1.amazonaws.com/hack0-rockpro64-0.4.img
+
 sha256sum: d5254602a3faebaba61b850b94a0d38cac5e74819c779b2967f0ee5936197283
+
 Release date: 26 may 2021
 
 ## FAQ
