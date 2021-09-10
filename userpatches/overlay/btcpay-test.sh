@@ -39,7 +39,7 @@ btcpayserver_pinged=false
 fancontrol_running=false
 
 blink_speed=1
-timeout=$(((60*15)))
+timeout=$(((60*20)))
 
 total_wait=0
 success=false

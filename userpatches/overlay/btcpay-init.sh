@@ -4,11 +4,14 @@ set -e
 
 source /opt/btcpay/btcpay-common.sh
 
-if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
-    dpkg-reconfigure openssh-server
-    systemctl restart ssh
-    echo -e "[ \e[32mOK\e[0m ] SSH Host keys generated"
-fi
+while ! [ -f /etc/ssh/ssh_host_rsa_key ]; do
+    if dpkg-reconfigure openssh-server; then
+        systemctl restart ssh
+        echo -e "[ \e[32mOK\e[0m ] SSH Host keys generated"
+    else
+        sleep 5
+    fi
+done
 
 if ! mountpoint -q "$MOUNT_DIR"; then
     echo -e "[ \e[31mFailed\e[0m ] The mount directory $MOUNT_DIR does not exists, is the external drive plugged?"
