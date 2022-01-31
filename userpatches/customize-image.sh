@@ -83,6 +83,10 @@ FR_general_delete_this_file_after_completion=1" > /boot/armbian_first_run.txt
 fi
 #######
 
+#### Without this, port 53 (DNS) is taken by the OS and pihole can't work
+
+sed -r -i 's/#?DNSStubListener=yes/DNSStubListener=no/g' /etc/systemd/resolved.conf
+
 ####### Setup mdns
 adduser --system --group          --disabled-login --home /var/run/avahi-daemon   avahi
 apt install -y openssl net-tools fio libnss-mdns \
