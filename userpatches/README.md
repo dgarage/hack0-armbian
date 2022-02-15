@@ -56,16 +56,15 @@ Here are what our patches do:
 
 ## Pre built images
 
-> [!WARNING]
-> When you first boot a prebuilt images, the hack0 will be in `setup mode`, which will format any attached drive to the board. Please read `Common workflow` section above.
+> :warning: When you first boot a prebuilt images, the hack0 will be in  `setup mode`, which will wipe all data in the SSD drive to the board. Please read `Common workflow` section above.
 
-### Version 0.5
+### Version 0.6
 
-Image: https://hack0-image.s3.amazonaws.com/hack0-rockpro64-0.5.img
+Image: https://hack0-image.s3.amazonaws.com/hack0-rockpro64-0.6.img
 
-sha256sum: f4ae167203ece1714a3e4aef5d1bf813d033bcd15f678d63b0d96ec1c3ba6a40
+sha256sum: 832254df3ea43c404a969084dae353af086b823981a49679e5ac2c7aa9f5674f
 
-Release date: 13 september 2021
+Release date: 15 february 2022
 
 ## FAQ
 
