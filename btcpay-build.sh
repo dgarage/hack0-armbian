@@ -92,7 +92,9 @@ if $BUILD; then
 
     if $PROD; then
         touch .production
+        echo "Building production image..."
     else
+        echo "Building debug image..."
         rm -rf .production
         [ -f "build-local.conf" ] && source build-local.conf && echo "build-local.conf loaded"
     fi
