@@ -62,9 +62,9 @@ Here are what our patches do:
 
 Image: https://hack0-image.s3.amazonaws.com/hack0-rockpro64-0.6.img
 
-sha256sum: 832254df3ea43c404a969084dae353af086b823981a49679e5ac2c7aa9f5674f
+sha256sum: aeb9c26e7463dbb441a3a4f02473e9826f3036536de393fa2b55bc513ec13fe9
 
-Release date: 15 february 2022
+Release date: 21 february 2022
 
 ## FAQ
 
