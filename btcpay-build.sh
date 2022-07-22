@@ -119,11 +119,11 @@ if $BUILD; then
         echo "docker-images.tar is up to date"
     fi
     cd "$OVERLAY_DIRECTORY"
-    if ! [ -f "utxo-snapshot-bitcoin-mainnet-720179.tar" ]; then
+    if ! [ -f "utxo-snapshot-bitcoin-mainnet-744358.tar" ]; then
         set +e
         rm utxo-snapshot-*.tar &> /dev/null
         set -e
-        wget "http://utxosets.blob.core.windows.net/public/utxo-snapshot-bitcoin-mainnet-720179.tar" -q --show-progress
+        wget "http://utxosets.blob.core.windows.net/public/utxo-snapshot-bitcoin-mainnet-744358.tar" -q --show-progress
     fi
     popd
 
