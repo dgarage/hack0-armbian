@@ -60,11 +60,11 @@ Here are what our patches do:
 
 ### Version 0.6
 
-Image: https://hack0-image.s3.amazonaws.com/hack0-rockpro64-0.6.img
+Image: https://hack0-image.s3.amazonaws.com/hack0-rockpro64-0.7.img
 
-sha256sum: aeb9c26e7463dbb441a3a4f02473e9826f3036536de393fa2b55bc513ec13fe9
+sha256sum: 889ebbddfa8c355d570f6e57b68b81cf3dc9df99a069e2ab4d11c38cbc09d704
 
-Release date: 21 february 2022
+Release date: 22 July 2022
 
 ## FAQ
 
