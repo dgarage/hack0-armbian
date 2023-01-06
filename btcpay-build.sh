@@ -80,7 +80,7 @@ if $BUILD; then
         echo "The board should be specified with --board (See --help)"
         exit 1
     fi
-    BUILD_ARGS="docker BOARD=${BOARD} KERNEL_ONLY=no KERNEL_CONFIGURE=no RELEASE=focal BRANCH=current BUILD_DESKTOP=no WIREGUARD=no BUILD_MINIMAL=yes FORCE_USE_RAMDISK=no"
+    BUILD_ARGS="docker BOARD=${BOARD} KERNEL_ONLY=no KERNEL_CONFIGURE=no RELEASE=bullseye BRANCH=current BUILD_DESKTOP=no WIREGUARD=no BUILD_MINIMAL=yes FORCE_USE_RAMDISK=no "
     if $UPDATE; then
         BUILD_ARGS="${BUILD_ARGS} CLEAN_LEVEL=oldcache PROGRESS_LOG_TO_FILE=yes"
     fi
