@@ -85,6 +85,7 @@ if $BUILD; then
         BUILD_ARGS="${BUILD_ARGS} CLEAN_LEVEL=oldcache PROGRESS_LOG_TO_FILE=yes"
     fi
     pushd . 2>/dev/null
+    rm -f "userpatches/config-docker.conf" "userpatches/Dockerfile"
     cd "userpatches/overlay"
     OVERLAY_DIRECTORY="$(pwd)"
     cd "$OVERLAY_DIRECTORY"
